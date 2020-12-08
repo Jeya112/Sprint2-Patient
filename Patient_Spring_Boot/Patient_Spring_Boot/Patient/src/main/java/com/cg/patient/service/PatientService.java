@@ -1,3 +1,8 @@
+/**
+ * Creates patient services for the necessities like Search and Bookings for doctor.
+ * @author Jeya Prashanthini
+ *
+ */
 package com.cg.patient.service;
 
 import java.util.Arrays;
@@ -26,28 +31,42 @@ public class PatientService {
     Doctor doctor = new Doctor("Arun","Orthopaedics",9563124752L);
 	List<Doctor> doctorList = Arrays.asList(new Doctor[] {doctor});
 	
-	Hospital hospital= new Hospital("Arun",8382856782L,new String[]{"Ortho","Heart"},doctorList);
+	public Hospital hospital= new Hospital("Arun",8382856782L,new String[]{"Ortho","Heart"},doctorList);
+	
+	/*
+	 * Saving the patient by identifier
+	 */
 	
 	public Patient saveOrUpdate(Patient patient) {
 
 		try {
 			patient.setPatientIdentifier(patient.getPatientIdentifier().toUpperCase());
 			return repository.save(patient);
-		} catch (Exception e) {
+		}   catch (Exception e) {
 			throw new PatientException("PatientIdentifier " + patient.getPatientIdentifier() + " already available");
 		}
 }
+	/*
+	 *  Finding patient by identifier
+	 */
     public Patient findPatienttByPatientIdentifier(String patientIdentifier) {
-		Patient patient = repository.findByPatientIdentifier(patientIdentifier.toUpperCase());
+		Patient patient = repository.findByPatientIdentifier(patientIdentifier.toUpperCase()); 
 		if (patient == null) {
 			throw new PatientException("PatientIdentifier " + patientIdentifier + " not available");
 		}
 		return patient;
 		}
+    /*
+     * Finding all patients
+     */
+    
 	public Iterable<Patient> findAllPatients(){
 		return repository.findAll();
 		
 	}
+	/*
+	 * Deleting the patient by patient identifier
+	 */
 	public void deletePatientByPatientIdentifier(String patientIdentifier) {
 		Patient patient=findPatienttByPatientIdentifier(patientIdentifier.toUpperCase());
 		if(patient==null) {
@@ -55,6 +74,9 @@ public class PatientService {
 		}
 		repository.delete(patient);
 	}
+	/*
+	 * Searching Doctor
+	 */
 	
 	public boolean searchDoctorBySpecialization(String specialization) {
 		List<Doctor> doctorlist= this.hospital.getDoctorList();
@@ -65,7 +87,9 @@ public class PatientService {
 		}
 	    return false;
 	}
-	
+	/*
+	 * Booking Doctor Appointment
+	 */
       public boolean bookDoctorAppointment(String doctorName, String specialization) {
     	  try {
 			if(doctor.getDoctorName().equalsIgnoreCase(doctorName)) {

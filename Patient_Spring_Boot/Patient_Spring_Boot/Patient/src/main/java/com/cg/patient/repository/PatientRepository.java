@@ -9,7 +9,9 @@ import com.cg.patient.domain.Patient;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient,Long> { 
 	
-             Patient findByPatientIdentifier(String patientIdentifier);
+               Patient findByPatientIdentifier(String patientIdentifier);
+		
+			
              
 
             }

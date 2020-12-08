@@ -2,6 +2,7 @@ package com.cg.patient.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class Patient {
 	@NotBlank(message="Prescription can't be blank")
 	private String prescription;
 	
+	@Column(unique = true,updatable = false)
 	@NotBlank(message="Patient Identifier can't be blank")
 	@Size(min=4, max=5,message = "Size must be between 4 to 5 characters")
 	private String patientIdentifier;
@@ -47,8 +49,9 @@ public class Patient {
 	 * @param patientUserName
 	 * @param patientPassword
 	 */
-	public Patient(String patientName, int patientAge, long phoneNumber, String patientAddress) {
+	public Patient(String patientIdentifier, String patientName, int patientAge, long phoneNumber, String patientAddress) {
 		super();
+		this.patientIdentifier =  patientIdentifier;
 		this.patientName = patientName;
 		this.patientAge = patientAge;
 		this.phoneNumber = phoneNumber;

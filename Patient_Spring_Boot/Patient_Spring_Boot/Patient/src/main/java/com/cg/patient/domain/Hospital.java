@@ -1,3 +1,8 @@
+/**
+ * Creates a information of the hospital stating name,specialization,list of doctors,phone number etc
+ * @author Jeya Prashanthini
+ *
+ */
 package com.cg.patient.domain;
 
 import java.util.Arrays;
@@ -44,6 +49,10 @@ public class Hospital {
 	 * set the hospital Speciality
 	 * @param hospitalSpeciality
 	 */
+	public void setHospitalSpecialities(String[] hospitalSpecialities) {
+		this.hospitalSpecialities = hospitalSpecialities;
+	}
+	
 	public void setHospitalSpeciality(String[] hospitalSpecialities) {
 		this.hospitalSpecialities = hospitalSpecialities;
 	}
@@ -81,25 +90,37 @@ public class Hospital {
 	public long getHospitalPhNO() {
 		return hospitalPhNO;
 	}
+	/**
+	 * Set the PhNo of the hospital
+	 * @param hospitalPhNo
+	 */
 	public void setHospitalPhNO(long hospitalPhNO) {
 		this.hospitalPhNO = hospitalPhNO;
 	}
-	
-	public void setHospitalSpecialities(String[] hospitalSpecialities) {
-		this.hospitalSpecialities = hospitalSpecialities;
-	}
-	
-	
+	/**
+	 * @return the doctor list 
+	 */
 	public List<Doctor> getDoctorList() {
 		return doctorList;
 	}
+	/**
+	 * Set the list of doctors
+	 * @param doctorList
+	 */
 	public void setDoctorList(List<Doctor> doctorList) {
 		this.doctorList = doctorList;
 	}
 	
+	/**
+	 * @return the no of Appointments
+	 */
 	public static int getNoOfDoctorAppointments() {
 		return noOfDoctorAppointments;
 	}
+	/**
+	 * Set the no Of Doctor Appointments
+	 * @param noOfDoctorAppointments
+	 */
 	public static void setNoOfDoctorAppointments(int noOfDoctorAppointments) {
 		Hospital.noOfDoctorAppointments = noOfDoctorAppointments;
 	}
